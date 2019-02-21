@@ -17,7 +17,7 @@
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
       <%= yield %>
-      <!--<%= render 'layouts/header' %>-->
+      <%#render 'layouts/header' 5章不備？のため自力でフッター作成%>
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
     </div>
