@@ -9,7 +9,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @first_day = Date.today.beginning_of_month
+    if params[:first_day].nil?
+      @first_day = Date.today.beginning_of_month
+    else
+      @first_day = Date.parse(params[:first_day])
+    end
     @last_day = @first_day.end_of_month
     (@first_day..@last_day).each do |day|
       unless @user.attendances.any? {|attendance| attendance.worked_on == day}
