@@ -38,7 +38,21 @@
       <th></th>
     </tr>
   </thead>
+
+  <tbody>
+    <% @dates.each do |day| %>
+      <tr>
+        <td><%= day.worked_on.to_s(:date) %></td>
+        <td><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
+        <td> </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
-
-
-
