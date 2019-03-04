@@ -5,6 +5,9 @@ class AttendancesController < ApplicationController
     if @attendance.started_at.nil?
       @attendance.update_attributes(started_at: current_time)
       flash[:info] = 'おはようございます。'
+    elsif @attendance.finished_at.nil?
+      @attendance.update_attributes(finished_at: current_time)
+      flash[:into] = 'お疲れ様でした。'
     else
       flash[:danger] = 'トラブルがあり、登録出来ませんでした。'
     end
