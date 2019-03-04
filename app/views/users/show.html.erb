@@ -50,9 +50,13 @@
       <tr>
         <td><%= day.worked_on.to_s(:date) %></td>
         <td><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
-        <td> </td>
-        <td></td>
-        <td></td>
+        <td><%= day.started_at.to_s(:hour) if day.started_at.present? %></td>
+        <td><%= day.started_at.to_s(:min) if day.started_at.present? %></td>
+        <td>
+          <% if day.worked_on == Date.today && day.started_at.nil? %>
+            <%= button_to "出社", user_attendances_path(@user), class: "btn btn-xs btn-primary" %>
+          <% end %>
+        </td>
         <td></td>
         <td></td>
         <td></td>
