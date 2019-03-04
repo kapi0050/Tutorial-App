@@ -67,6 +67,8 @@
           <td>
             <% if day.started_at.present? && day.finished_at.present? %>
               <%= working_times(day.started_at, day.finished_at) %>
+              <% seconds = (day.finished_at - day.started_at).to_i %>
+              <% @total_seconds = @total_seconds.to_i + seconds %>
             <% end %>
           </td>
           <td></td>
