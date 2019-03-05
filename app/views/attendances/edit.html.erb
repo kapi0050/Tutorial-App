@@ -1,0 +1,28 @@
+<% provide(:title,"勤怠編集") %>
+<div>
+  <h1>勤怠編集画面</h1>
+  <table class = "table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>日付</th>
+        <th>曜日</th>
+        <th>出社</th>
+        <th>退社</th>
+        <th>在社時間</th>
+        <th>備考</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @dates.each do |day| %>
+        <tr>
+          <td><%= day.worked_on.to_s(:date) %></td>
+          <td><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
