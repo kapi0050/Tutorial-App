@@ -21,4 +21,24 @@ class AttendancesController < ApplicationController
     @dates = @user.attendances.where('worked_on >= ? and worked_on <= ?', @first_day, @last_day).order('worked_on')
   end
   
+  def update
+    @user = User.find(params[:id])
+    if attendances_invalid?
+      attendances_params.each do |id, item|
+        attendance = Attendance.find(id)
+        attendance.update_attributes(item)
+      end
+      flash[:success] = '勤怠情報を更新しました。'
+      redirect_to user_path(@user, params:{first_day: params[:date]})
+    else
+      flash[:danger] = '不正な時間入力がありました、再入力して下さい。'
+      redirect_to edit_attendances_path(@user, params[:date])
+    end
+  end
+  
+  private
+    def attendances_params
+      params.permit(attendances: [:started_at, :finished_at, :note])[:attendances]
+    end
+  
 end
